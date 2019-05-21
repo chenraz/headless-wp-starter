@@ -40,13 +40,15 @@ wp core install \
 wp option update blogdescription "$WORDPRESS_DESCRIPTION"
 wp rewrite structure "$WORDPRESS_PERMALINK_STRUCTURE"
 
-wp theme activate postlight-headless-wp
-wp theme delete twentysixteen twentyseventeen twentynineteen
+# download acf pro
+
+acf_zip_file="$(wp plugin path)/advanced-custom-fields-pro.zip"
+wget -O ${acf_zip_file} "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=$ACF_KEY"
 
 wp plugin delete akismet hello
 wp plugin install --activate --force \
     acf-to-wp-api \
-    advanced-custom-fields-pro \
+    ${acf_zip_file} \
     custom-post-type-ui \
     wordpress-importer \
     wp-rest-api-v2-menus \
@@ -54,6 +56,9 @@ wp plugin install --activate --force \
     https://github.com/wp-graphql/wp-graphql/archive/master.zip \
     https://github.com/wp-graphql/wp-graphql-jwt-authentication/archive/v0.3.1.zip \
     /var/www/plugins/*.zip
+
+wp theme activate postlight-headless-wp
+wp theme delete twentysixteen twentyseventeen twentynineteen    
 
 wp term update category 1 --name="Sample Category"
 wp menu create "Header Menu"

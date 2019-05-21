@@ -8,6 +8,9 @@ RUN mv "$PHP_INI_DIR"/php.ini-development "$PHP_INI_DIR"/php.ini
 RUN apt-get update; \
 	apt-get install -yq mysql-client netcat sudo less git unzip
 
+# install wget
+RUN apt install wget	
+
 # wp-cli
 RUN curl -sL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o wp; \
 	chmod +x wp; \
