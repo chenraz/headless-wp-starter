@@ -46,7 +46,7 @@ wp theme delete twentysixteen twentyseventeen twentynineteen
 wp plugin delete akismet hello
 wp plugin install --activate --force \
     acf-to-wp-api \
-    advanced-custom-fields \
+    advanced-custom-fields-pro \
     custom-post-type-ui \
     wordpress-importer \
     wp-rest-api-v2-menus \
