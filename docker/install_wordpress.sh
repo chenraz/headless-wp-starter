@@ -57,6 +57,8 @@ wp plugin install --activate --force \
     https://github.com/wp-graphql/wp-graphql-jwt-authentication/archive/v0.3.1.zip \
     /var/www/plugins/*.zip
 
+rm -f ${acf_zip_file}
+
 wp theme activate postlight-headless-wp
 wp theme delete twentysixteen twentyseventeen twentynineteen    
 
