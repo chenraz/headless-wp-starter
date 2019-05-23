@@ -4,3 +4,4 @@ yarn-error.log
 data
 yarn.lock
 .env
+nbproject
