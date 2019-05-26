@@ -14,3 +14,6 @@
 /wp-content/index.php
 /wp-content/debug.log
 /wp-content/uploads/**
+
+/wp-content/themes/*
+!/wp-content/themes/postlight-headless-wp

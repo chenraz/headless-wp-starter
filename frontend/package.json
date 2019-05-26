@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@wordpress/block-library": "^2.5.0",
     "autoprefixer": "9.4.7",
     "axios": "^0.18.0",
     "compression": "^1.7.4",
