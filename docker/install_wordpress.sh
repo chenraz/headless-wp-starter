@@ -60,8 +60,6 @@ wp plugin install --activate --force \
 rm -f ${acf_zip_file}
 
 # gutebnerg object plugin - resapi
-cd /var/www/html/wp-content/plugins
-git clone https://github.com/royboy789/gutenberg-object-plugin.git
 wp plugin activate gutenberg-object-plugin
 
 wp theme activate postlight-headless-wp

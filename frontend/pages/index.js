@@ -7,7 +7,12 @@ import PageWrapper from '../components/PageWrapper';
 import Menu from '../components/Menu';
 import Config from '../config';
 
-const wp = new WPAPI({ endpoint: Config.apiUrl });
+var apiRootJSON = require( '../utils/wp-json.json' );
+
+const wp = new WPAPI({ 
+  endpoint: Config.apiUrl,
+  routes: apiRootJSON.routes
+});
 
 const headerImageStyle = {
   marginTop: 50,
@@ -29,7 +34,7 @@ class Index extends Component {
 
   static async getInitialProps() {
     try {
-      const [page, posts, pages] = await Promise.all([
+      const [page, blocks] = await Promise.all([
         wp
           .pages()
           .slug('welcome')
@@ -37,11 +42,13 @@ class Index extends Component {
           .then(data => {
             return data[0];
           }),
-        wp.posts().embed(),
-        wp.pages().embed(),
+        wp
+          .pages()
+          .id(9)
+          .blocks(),
       ]);
 
-      return { page, posts, pages };
+      return { page, blocks };
     } catch (err) {
       if (err.data.status === 403) {
         tokenExpired();
@@ -71,22 +78,15 @@ class Index extends Component {
 
   render() {
     const { id } = this.state;
-    const { posts, pages, headerMenu, page } = this.props;
-    const fposts = posts.map(post => {
+    const { blocks, headerMenu, page } = this.props;
+    const fblocks = blocks.map(block => {
       return (
-        <ul key={post.slug}>
-          <li>
-            <Link
-              as={`/post/${post.slug}`}
-              href={`/post?slug=${post.slug}&apiRoute=post`}
-            >
-              <a>{post.title.rendered}</a>
-            </Link>
-          </li>
-        </ul>
+        <div>
+          <p>Block here</p>
+        </div>
       );
     });
-    const fpages = pages.map(ipage => {
+/*     const fpages = pages.map(ipage => {
       return (
         <ul key={ipage.slug}>
           <li>
@@ -99,7 +99,7 @@ class Index extends Component {
           </li>
         </ul>
       );
-    });
+    }); */
     return (
       <Layout>
         <Menu menu={headerMenu} />
@@ -116,10 +116,10 @@ class Index extends Component {
             __html: page.content.rendered,
           }}
         />
-        <h2>Posts</h2>
-        {fposts}
-        <h2>Pages</h2>
-        {fpages}
+        <h2>Blocks</h2>
+        {fblocks}
+{/*         <h2>Pages</h2>
+        {fpages} */}
         {id ? (
           <div>
             <h2>You Are Logged In</h2>
