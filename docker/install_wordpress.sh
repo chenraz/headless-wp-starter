@@ -60,7 +60,7 @@ wp plugin install --activate --force \
 rm -f ${acf_zip_file}
 
 # gutebnerg object plugin - resapi
-cd $(wp plugin path)
+cd $(wp plugin path)/gutenberg-object-plugin
 composer install
 wp plugin activate gutenberg-object-plugin
 
