@@ -60,6 +60,8 @@ wp plugin install --activate --force \
 rm -f ${acf_zip_file}
 
 # gutebnerg object plugin - resapi
+cd $(wp plugin path)
+composer install
 wp plugin activate gutenberg-object-plugin
 
 wp theme activate postlight-headless-wp
